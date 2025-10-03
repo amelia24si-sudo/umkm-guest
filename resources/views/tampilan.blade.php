@@ -9,7 +9,7 @@
 
     <p><strong>Nama: </strong>{{ $name }}</p>
     <p><strong>Umur: </strong> {{ $tanggal_lahir }}, {{ $tahun_skarang - $tahun_lahir }} thn</p>
-    <p><strong>Hobi: </strong></p>
+    <p><strong>Hobbies: </strong></p>
     <ul>
         @foreach($hobbies as $hobby)
             <li>{{ $hobby }}</li>
