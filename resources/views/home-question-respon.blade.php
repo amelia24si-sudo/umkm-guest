@@ -62,7 +62,7 @@
 
         <p class="email-info mt-4">
             Pertanyaan Anda akan segera kami tanggapi dan balas melalui email <strong>{{ $email }}</strong>.<br><br>
-            Mohon cek kotak masuk atau folder spam Anda secara berkala.
+            Mohon cek kotak masuk atau folder spam anda secara berkala.
         </p>
 
         <a href="{{ url('/home') }}" class="btn btn-primary mt-4">Kembali ke Beranda</a>
