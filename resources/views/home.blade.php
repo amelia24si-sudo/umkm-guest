@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('assets/CSS/custom-style.css') }}">
     <style>
         body {
-            /* font-family: 'Arial', sans-serif; */
+            font-family: 'Arial', sans-serif; */
         }
 
         .navbar-brand {
