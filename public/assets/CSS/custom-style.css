@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'MyCustomFont';
-    src: url('assets/fonts/Bitter-VariableFont_wght.ttf');
+    src: url('assets/fonts/Bitter-Italic-VariableFont_wght.ttf');
 }
 
 .font-custom{
-    font-family: 'Bitter-VariableFont_wght';
+    font-family: 'Bitter-Italic-VariableFont_wght';
 }
