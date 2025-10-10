@@ -58,7 +58,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <img src="{{ asset('assets/images/Profile_Picture_Robin_-_Brilliant_Youth.webp') }}" alt="Logo"
-                width="60" height="60">
+                width="80" height="80">
             <a class="navbar-brand" href="#">My Laravel App</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
