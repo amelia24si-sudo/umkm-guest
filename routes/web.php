@@ -21,19 +21,19 @@ Route::get('/mahasiswa', function () {
 Route::get('/mahasiswa/{param1}', [MahasiswaController::class, 'show']);
 
 Route::get('/nama/{param1}', function ($param1) {
-    return 'Nama saya: '.$param1;
+    return 'Nama saya: ' . $param1;
 });
 
 Route::get('/nim/{param1?}', function ($param1 = '') {
-    return 'NIM saya: '.$param1;
+    return 'NIM saya: ' . $param1;
 });
 
 Route::get('/about', function () {
     return view('halaman-about');
 });
 
-Route::get('/home',[HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])-> name('home');
 
-Route::get('/mk',[PegawaiController::class, 'index']);
+Route::get('/mk', [PegawaiController::class, 'index']);
 
 Route::post('question/store', [QuestionControllers::class, 'store'])->name('question.store');
