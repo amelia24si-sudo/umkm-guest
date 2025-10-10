@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\QuestionControllers;
 
@@ -37,3 +38,5 @@ Route::get('/home', [HomeController::class, 'index'])-> name('home');
 Route::get('/mk', [PegawaiController::class, 'index']);
 
 Route::post('question/store', [QuestionControllers::class, 'store'])->name('question.store');
+
+Route::get('dashboard',[DashboardController::class, 'index'])-> name('dashboard');
