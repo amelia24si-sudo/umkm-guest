@@ -386,13 +386,13 @@
                                     <!-- Birthday -->
                                     <div class="mb-3">
                                         <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="date" id="birthday" class="form-control" name="birthday" value="{{old('birthday')}}">
+                                        <input type="date" id="birthday" class="form-control" name="birthday" value="{{old('birthday')}}"required>
                                     </div>
 
                                     <!-- Gender -->
                                     <div class="mb-3">
                                         <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select" name="gender" value="{{old('gender')}}">
+                                        <select id="gender" name="gender" class="form-select" name="gender" value="{{old('gender')}}"required>
                                             <option value="">-- Pilih --</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -411,7 +411,7 @@
                                     <!-- Phone -->
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" id="phone" class="form-control" name="phone" value="{{old('phone')}}">
+                                        <input type="tel" id="phone" class="form-control" name="phone" value="{{old('phone')}}"required>
                                     </div>
 
                                     <!-- Buttons -->
