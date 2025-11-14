@@ -38,7 +38,7 @@
                         <table id="table-users" class="table table-centered table-nowrap mb-0 rounded">
                             <thead class="thead-light">
                                 <tr>
-                                    <th class="border-0">#</th>
+                                    <th class="border-0">No</th>
                                     <th class="border-0">Nama Lengkap</th>
                                     <th class="border-0">Email</th>
                                     <th class="border-0">Role</th>
