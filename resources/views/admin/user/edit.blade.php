@@ -23,7 +23,7 @@
                 <p class="mb-0">Form untuk menambahkan data User baru.</p>
             </div>
             <div>
-                <a href="{{ route('users.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
+                <a href="{{ route('user.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
                     Kembali</a>
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
                 <div class="card-body">
-                    <form action="{{ route('users.update', $dataPelanggan->pelanggan_id) }}" method="POST">
+                    <form action="{{ route('user.update', $dataUser->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -74,7 +74,8 @@
                                 <!-- Buttons -->
                                 <div class="">
                                     <button type="submit" class="btn-info">Simpan Perubahan</button>
-                                    <a href="{{ route('users.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
+                                    <a href="{{ route('user.index') }}"
+                                        class="btn btn-outline-secondary ms-2">Batal</a>
                                 </div>
                             </div>
                         </div>

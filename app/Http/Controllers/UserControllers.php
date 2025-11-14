@@ -18,7 +18,7 @@ class UserControllers extends Controller
 
     public function create()
     {
-       return view('admin.user.create');
+        return view('admin.user.create');
     }
 
     public function store(Request $request)
@@ -46,14 +46,22 @@ class UserControllers extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+        $user_id = $id;
+        $user = User::findOrFail($user_id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+        return redirect()->route('user.index')->with('success', 'Perubahan Data Berhasil');
     }
 
     public function destroy(string $id)
     {
         $user = User::findOrFail($id);
 
-        $user -> delete();
-        return redirect()->route('users.index')->with('success', 'Data berhasil dihapus');
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'Data berhasil dihapus');
     }
 }

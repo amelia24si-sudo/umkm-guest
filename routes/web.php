@@ -45,4 +45,4 @@ Route::get('dashboard',[DashboardController::class, 'index'])-> name('dashboard'
 
 Route::resource('pelanggan', PelangganController::class);
 
-Route::resource('users', UserControllers::class);
+Route::resource('user', UserControllers::class);
