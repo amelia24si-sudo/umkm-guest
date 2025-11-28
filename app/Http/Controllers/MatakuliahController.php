@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MahasiswaController extends Controller
+class MatakuliahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,12 +33,12 @@ class MahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $param1)
+    public function show(string $param1 = null)
     {
-        if($param1 =='detail'){
-            return view('halaman-detail-mahasiswa');
-        } else if ($param1 =="profile"){
-            return view('halaman-profile-mahasiswa');
+        if($param1){
+            return ('Anda mengakses matakuliah ' .$param1);
+        } else {
+            return ('Masukkan kode matakuliah');
         }
     }
 

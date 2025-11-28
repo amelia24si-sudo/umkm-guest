@@ -40,6 +40,17 @@
 
                         <div class="row mb-4">
                             <div class="col-lg-4 col-sm-6">
+                                <div class="text-center mb-3">
+                                    @if ($user->avatar)
+                                        <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="Avatar"
+                                            class="rounded-circle" width="150" height="150">
+                                    @else
+                                        <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content mb-2"
+                                            style="width: 80px; height: 80px">
+                                            {{ strtoupper(substr($user->name, 0, 2)) }}
+                                        </div>
+                                    @endif
+                                </div>
                                 <!-- nama lengkap -->
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nama Lengkap</label>
@@ -74,8 +85,7 @@
                                 <!-- Buttons -->
                                 <div class="">
                                     <button type="submit" class="btn-info">Simpan Perubahan</button>
-                                    <a href="{{ route('user.index') }}"
-                                        class="btn btn-outline-secondary ms-2">Batal</a>
+                                    <a href="{{ route('user.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
                                 </div>
                             </div>
                         </div>
