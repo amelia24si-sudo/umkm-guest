@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\QuestionControllers;
+use App\Http\Controllers\MutliuploadsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,3 +47,6 @@ Route::get('dashboard',[DashboardController::class, 'index'])-> name('dashboard'
 Route::resource('pelanggan', PelangganController::class);
 
 Route::resource('user', UserControllers::class);
+
+Route::get('/multipleuploads', [MutliuploadsController::class, 'index'])->name('uploads');
+Route::post('/save',[MutliuploadsController::class, 'store'])->name('uploads.store');

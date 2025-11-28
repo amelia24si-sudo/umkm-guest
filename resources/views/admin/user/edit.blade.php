@@ -41,15 +41,17 @@
                         <div class="row mb-4">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="text-center mb-3">
-                                    @if ($user->avatar)
+                                    @if ($dataUser->avatar)
                                         <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="Avatar"
                                             class="rounded-circle" width="150" height="150">
                                     @else
                                         <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content mb-2"
                                             style="width: 80px; height: 80px">
-                                            {{ strtoupper(substr($user->name, 0, 2)) }}
+                                            {{ strtoupper(substr($dataUser->name, 0, 2)) }}
                                         </div>
                                     @endif
+                                    <input type="file" name ="avatar" class="form-control form-control-sm">
+                                    <small class="text-muted">Kosongkan jika tidak ingin mengganti foto</small>
                                 </div>
                                 <!-- nama lengkap -->
                                 <div class="mb-3">
