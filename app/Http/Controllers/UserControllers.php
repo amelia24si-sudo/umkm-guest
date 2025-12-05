@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -8,11 +7,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserControllers extends Controller
 {
-
     public function index()
     {
-        $data['dataUser'] = User::all();
-
+        $data['dataUser'] = User::paginate(10); // Ganti all() dengan paginate()
         return view('admin.user.index', $data);
     }
 
@@ -23,19 +20,20 @@ class UserControllers extends Controller
 
     public function store(Request $request)
     {
-        $data['name'] = $request->name;
-        $data['email'] = $request->email;
+        // Validasi
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role'     => 'required|string|in:admin,pelanggan,mitra', // Sesuaikan dengan role yang ada
+        ]);
+
+        $data             = $request->only(['name', 'email', 'role']);
         $data['password'] = Hash::make($request->password);
-        // $data['password_confirmation'] = $request->password;
 
         User::create($data);
 
-        return redirect()->route('user.index')->with('success', 'Penambahan User Berhasil!');
-    }
-
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('user.list')->with('success', 'Penambahan User Berhasil!');
     }
 
     public function edit(string $id)
@@ -46,15 +44,27 @@ class UserControllers extends Controller
 
     public function update(Request $request, string $id)
     {
-        $user_id = $id;
-        $user = User::findOrFail($user_id);
+        $user = User::findOrFail($id);
 
-        $user->name = $request->name;
+        // Validasi
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'role'     => 'required|string|in:admin,pelanggan,mitra', // Sesuaikan dengan role yang ada
+        ]);
+
+        $user->name  = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->role  = $request->role; // Tambahkan ini
+
+        // Update password hanya jika diisi
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
 
         $user->save();
-        return redirect()->route('user.index')->with('success', 'Perubahan Data Berhasil');
+        return redirect()->route('user.list')->with('success', 'Perubahan Data Berhasil');
     }
 
     public function destroy(string $id)
@@ -62,6 +72,6 @@ class UserControllers extends Controller
         $user = User::findOrFail($id);
 
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('user.list')->with('success', 'Data berhasil dihapus');
     }
 }

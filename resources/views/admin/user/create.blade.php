@@ -23,7 +23,7 @@
                 <p class="mb-0">Form untuk menambahkan data User baru.</p>
             </div>
             <div>
-                <a href="{{ route('user.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
+                <a href="{{ route('user.list') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
                     Kembali</a>
             </div>
         </div>
@@ -40,68 +40,64 @@
                                 <!-- nama lengkap -->
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nama Lengkap</label>
-                                    <input type="text" id="name" class="form-control" name="name"
+                                    <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" required>
+                                    @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- email -->
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="text" id="email" class="form-control" name="email"
-                                        value="{{ old('email') }}"required>
+                                    <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- role -->
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">Role</label>
+                                    <select id="role" name="role" class="form-select @error('role') is-invalid @enderror" required>
+                                        <option value="">-- Pilih Role --</option>
+                                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Super Admin</option>
+                                        <option value="pelanggan" {{ old('role') == 'pelanggan' ? 'selected' : '' }}>Pelanggan</option>
+                                        <option value="mitra" {{ old('role') == 'mitra' ? 'selected' : '' }}>Mitra</option>
+                                    </select>
+                                    @error('role')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
-
-                            {{-- <div class="col-lg-4 col-sm-6">
-                                    <!-- Birthday -->
-                                    <div class="mb-3">
-                                        <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="date" id="birthday" class="form-control" name="birthday" value="{{old('birthday')}}"required>
-                                    </div>
-
-                                    <!-- Gender -->
-                                    <div class="mb-3">
-                                        <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select" name="gender" value="{{old('gender')}}"required>
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
-                                </div> --}}
 
                             <div class="col-lg-4 col-sm-12">
                                 <!-- password -->
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type= "password" id="password" class="form-control" name="password"
-                                        value="{{ old('password') }}"required>
+                                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                                        value="{{ old('password') }}" required>
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- password confirmation -->
                                 <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label">Password</label>
-                                    <input type= "password" id="password_confirmation" class="form-control"
-                                        name="password_confirmation" value="{{ old('password_confirmation') }}"required>
+                                    <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                                    <input type="password" id="password_confirmation" class="form-control" name="password_confirmation" required>
                                 </div>
 
-                                {{-- <!-- Phone -->
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="tel" id="phone" class="form-control" name="phone" value="{{old('phone')}}"required>
-                                    </div> --}}
-
                                 <!-- Buttons -->
-                                <div class="">
+                                <div class="mt-4">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="{{ route('user.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
+                                    <a href="{{ route('user.list') }}" class="btn btn-outline-secondary ms-2">Batal</a>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>

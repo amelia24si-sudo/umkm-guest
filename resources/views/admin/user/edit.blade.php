@@ -14,16 +14,16 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="#">Users</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tambah Users</li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Users</li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
-                <h1 class="h4">Tambah Users</h1>
-                <p class="mb-0">Form untuk menambahkan data User baru.</p>
+                <h1 class="h4">Edit Users</h1>
+                <p class="mb-0">Form untuk mengubah data User.</p>
             </div>
             <div>
-                <a href="{{ route('user.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
+                <a href="{{ route('user.list') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
                     Kembali</a>
             </div>
         </div>
@@ -42,58 +42,80 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="text-center mb-3">
                                     @if ($dataUser->avatar)
-                                        <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="Avatar"
+                                        <img src="{{ asset('storage/avatars/' . $dataUser->avatar) }}" alt="Avatar"
                                             class="rounded-circle" width="150" height="150">
                                     @else
-                                        <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content mb-2"
-                                            style="width: 80px; height: 80px">
+                                        <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mb-2 mx-auto"
+                                            style="width: 80px; height: 80px; line-height: 80px;">
                                             {{ strtoupper(substr($dataUser->name, 0, 2)) }}
                                         </div>
                                     @endif
-                                    <input type="file" name ="avatar" class="form-control form-control-sm">
+                                    <input type="file" name="avatar" class="form-control form-control-sm mt-2">
                                     <small class="text-muted">Kosongkan jika tidak ingin mengganti foto</small>
                                 </div>
+
                                 <!-- nama lengkap -->
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nama Lengkap</label>
-                                    <input type="text" id="name" class="form-control" name="name"
-                                        value="{{ old('name') }}" required>
+                                    <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name', $dataUser->name) }}" required>
+                                    @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- email -->
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="text" id="email" class="form-control" name="email"
-                                        value="{{ old('email') }}"required>
+                                    <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email', $dataUser->email) }}" required>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- role -->
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">Role</label>
+                                    <select id="role" name="role" class="form-select @error('role') is-invalid @enderror" required>
+                                        <option value="">-- Pilih Role --</option>
+                                        <option value="admin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Super Admin</option>
+                                        <option value="pelanggan" {{ old('role') == 'pelanggan' ? 'selected' : '' }}>Pelanggan</option>
+                                        <option value="mitra" {{ old('role') == 'mitra' ? 'selected' : '' }}>Mitra</option>
+                                    </select>
+                                    @error('role')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-sm-12">
                                 <!-- password -->
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type= "password" id="password" class="form-control" name="password"
-                                        value="{{ old('password') }}"required>
+                                    <label for="password" class="form-label">Password Baru</label>
+                                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                                        value="{{ old('password') }}">
+                                    <small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- password confirmation -->
                                 <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label">Password</label>
-                                    <input type= "password" id="password_confirmation" class="form-control"
-                                        name="password_confirmation" value="{{ old('password_confirmation') }}"required>
+                                    <label for="password_confirmation" class="form-label">Konfirmasi Password Baru</label>
+                                    <input type="password" id="password_confirmation" class="form-control" name="password_confirmation">
                                 </div>
 
-
                                 <!-- Buttons -->
-                                <div class="">
-                                    <button type="submit" class="btn-info">Simpan Perubahan</button>
-                                    <a href="{{ route('user.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                    <a href="{{ route('user.list') }}" class="btn btn-outline-secondary ms-2">Batal</a>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
